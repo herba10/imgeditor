@@ -1,5 +1,29 @@
 <html>
 
+<head>
+    <style>
+        .content {
+            text-align: center;
+            margin: auto;
+            font-size: 50px;
+        }
+
+        .slider {
+            width: 20%;
+            height: 50px;
+            background: #d3d3d3;
+            outline: none;
+            opacity: 0.7;
+            transition: opacity .2s;
+        }
+
+        .slider:hover {
+            opacity: 1;
+        }
+
+    </style>
+</head>
+
 <body>
     <div class="content">
         <label for="file" style="cursor: pointer;" id="uploadtext">Wgraj obraz</label>
@@ -29,5 +53,23 @@
         
     </div>
 </body>
+
+<script>
+    let img;
+    let contrast = document.getElementById("contrast");
+    let brightness = document.getElementById("brightness");
+    let saturate = document.getElementById("saturate");
+    let invert = document.getElementById("invert");
+
+    var loadFile = function (event) {
+        document.getElementById("uploadtext").innerHTML = "Wgraj inny obraz";
+        img = document.getElementById('output');
+        img.src = URL.createObjectURL(event.target.files[0]);
+    };
+
+    function changeParameters() {
+        img.style.filter = "contrast(" + contrast.value + "%) brightness(" + brightness.value + "%) saturate(" + saturate.value + "%) invert(" + invert.value + "%)";
+    };
+</script>
 
 </html>
